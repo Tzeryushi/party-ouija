@@ -1,0 +1,48 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 28.10.2016 14:27:52
+
+newmtl Candle
+	Ns 10.000000
+	Ni 1.500000
+	d 0.950000
+	Tr 0.050000
+	Tf 0.950000 0.950000 0.950000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.764706 0.615686 0.211765
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka Candles_Diffuse.png
+	map_Kd Candles_Diffuse.png
+	map_bump -bm 0.300000 Map__14_Normal_Bump.png
+
+newmtl Wick
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.500000 0.500000 0.500000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka Wick_Diffuse.png
+	map_Kd Wick_Diffuse.png
+	map_bump -bm 0.300000 Map__12_Normal_Bump.png
+
+newmtl Flame
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.500000 0.500000 0.500000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka Flames_Diffuse.png
+	map_Kd Flames_Diffuse.png
+	map_Ke Flames_Emissive.png
+	map_bump -bm 0.300000 Map__10_Normal_Bump.png

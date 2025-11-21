@@ -1,0 +1,58 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 20.10.2016 11:27:42
+
+newmtl Wax
+	Ns 10.000000
+	Ni 1.500000
+	d 0.990000
+	Tr 0.010000
+	Tf 0.990000 0.990000 0.990000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.764706 0.615686 0.211765
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka Candle_Diffuse_2.png
+	map_Kd Candle_Diffuse_2.png
+	map_bump -bm 0.300000 Map__24_Normal_Bump.png
+
+newmtl wire_008008008
+	Ns 32
+	d 1
+	Tr 0
+	Tf 1 1 1
+	illum 2
+	Ka 0.031373 0.031373 0.031373
+	Kd 0.031373 0.031373 0.031373
+	Ks 0.350000 0.350000 0.350000
+
+newmtl Converted_LightFuse
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.500000 0.500000 0.500000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka Candle_Diffuse_2.png
+	map_Kd Candle_Diffuse_2.png
+	map_bump -bm 0.300000 Map__9_Normal_Bump.png
+	map_refl Mix_Mix.png
+
+newmtl Flame
+	Ns 10.000000
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 0.588000 0.588000 0.588000
+	Kd 0.500000 0.500000 0.500000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka Map__19_Composite.png
+	map_Kd Map__19_Composite.png
+	map_Ke Candle_Emissive.png

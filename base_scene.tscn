@@ -1,0 +1,516 @@
+[gd_scene load_steps=38 format=3 uid="uid://dtl1d8fnkcmck"]
+
+[ext_resource type="Script" uid="uid://bso1vrwardwor" path="res://decider.gd" id="1_57xsf"]
+[ext_resource type="Script" uid="uid://cbh6557pfcrpu" path="res://base_scene.gd" id="1_qcxwf"]
+[ext_resource type="Script" uid="uid://8q7o0fioba7p" path="res://processor.gd" id="2_2puwf"]
+[ext_resource type="PackedScene" uid="uid://qwq83c74xc4l" path="res://ouija_board.tscn" id="4_vjcsa"]
+[ext_resource type="Script" uid="uid://ctrjd6s3dc1gs" path="res://camera.gd" id="5_21qnn"]
+[ext_resource type="Script" uid="uid://c6e703qktvcee" path="res://ui.gd" id="5_oqo0w"]
+[ext_resource type="FontFile" uid="uid://cv8j2u20ecvvv" path="res://Fonts/Le Mano-Bold.ttf" id="7_anra8"]
+[ext_resource type="PackedScene" uid="uid://bkca6jsl3oyyr" path="res://letter.tscn" id="7_vxc0a"]
+[ext_resource type="FontFile" uid="uid://dvgfhf7h0dtki" path="res://Fonts/Le Mano.ttf" id="8_3ikmy"]
+[ext_resource type="Shader" uid="uid://qgk3yluni7bf" path="res://moving_fog.gdshader" id="10_ni26a"]
+[ext_resource type="ArrayMesh" uid="uid://qj5cbophfodi" path="res://Assets/Models/[OBJ] Medieval_Style_Table_Candle_02/Medieval_Style_Table_Candle_02.obj" id="11_2mb0d"]
+[ext_resource type="PackedScene" uid="uid://xqhbknw4n26e" path="res://Objects/medieval_style_table_candle_01.tscn" id="11_ni26a"]
+[ext_resource type="Shader" uid="uid://f572nloelvv7" path="res://Shaders/flame_shader.gdshader" id="12_ay483"]
+[ext_resource type="ArrayMesh" uid="uid://pckf4glucep" path="res://Assets/Models/[OBJ] Patio_Dining_Table_Round_6_Seats_01/Patio_Dining_Table_Round_6_Seats_01.obj" id="12_blj2i"]
+[ext_resource type="Texture2D" uid="uid://dgwribe76fxt6" path="res://Shaders/HoleNoise.png" id="13_cl7ii"]
+[ext_resource type="ArrayMesh" uid="uid://2wqbv8qn0vkq" path="res://Assets/Models/[OBJ] Voodoo_Candle_02_Gold_Flame/Voodoo_Candle_02_Gold_Flame.obj" id="14_01iy8"]
+[ext_resource type="Texture2D" uid="uid://b26ho3ukqfcpd" path="res://Shaders/FireMask.png" id="14_gqdld"]
+[ext_resource type="Texture2D" uid="uid://b5y4nu7j5jb4v" path="res://Shaders/orange_ramp.tres" id="15_gqdld"]
+[ext_resource type="ArrayMesh" uid="uid://c8qrmx50g412o" path="res://Assets/Models/[OBJ] Voodoo_Candle_02_Red_With_Flame/Voodoo_Candle_02_Red_With_Flame.obj" id="15_jjdbg"]
+[ext_resource type="Shader" uid="uid://capckdjdrqccn" path="res://Shaders/transparent.gdshader" id="16_gqdld"]
+[ext_resource type="ArrayMesh" uid="uid://82hsyr4tehuj" path="res://Assets/Models/[OBJ] Voodoo_Candle_02_v1_White_Lit_Max_Vray_NC/Voodoo_Candle_02_v1_White_Lit_Max_Vray_NC.obj" id="16_jjdbg"]
+[ext_resource type="ArrayMesh" uid="uid://f04mn7ge4y14" path="res://Assets/Models/[OBJ] Table_Candle_in_Holder_01_VRay/Table_Candle_in_Holder_01_VRay.obj" id="22_h480d"]
+[ext_resource type="Script" uid="uid://ccor38mgab8d6" path="res://pause.gd" id="23_ddjlp"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vxc0a"]
+noise_type = 3
+fractal_octaves = 4
+
+[sub_resource type="Sky" id="Sky_cl7ii"]
+
+[sub_resource type="Environment" id="Environment_vxc0a"]
+background_mode = 2
+sky = SubResource("Sky_cl7ii")
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_mode = 3
+tonemap_exposure = 1.63
+tonemap_white = 2.66
+ssao_enabled = true
+glow_enabled = true
+glow_blend_mode = 0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_3ikmy"]
+
+[sub_resource type="FogMaterial" id="FogMaterial_vxc0a"]
+density = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ay483"]
+shader = ExtResource("10_ni26a")
+shader_parameter/base_density = 0.2810000133475
+shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/fade_out_height = 2.0
+shader_parameter/fade_out_distance = 1.5
+shader_parameter/noise_amounts = Vector3(0.4, 0.35, 0.25)
+shader_parameter/noise_scales = Vector3(1, 2, 4)
+shader_parameter/noise_velocity1 = Vector3(0.5, 0, 0)
+shader_parameter/noise_velocity2 = Vector3(1, 0, -1)
+shader_parameter/noise_velocity3 = Vector3(0, 0.6, 0.3)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h480d"]
+render_priority = 0
+shader = ExtResource("12_ay483")
+shader_parameter/noise_texture = ExtResource("13_cl7ii")
+shader_parameter/texture_mask = ExtResource("14_gqdld")
+shader_parameter/emission_intensity = 1.0
+shader_parameter/time_scale = 3.0
+shader_parameter/texture_scale = Vector2(0.5, 0.5)
+shader_parameter/edge_softness = 0.1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0rpld"]
+lifetime_randomness = 0.81
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 3.9999976
+linear_accel_max = 3.9999976
+scale_min = 2.0
+scale_max = 3.0
+color_ramp = ExtResource("15_gqdld")
+
+[sub_resource type="QuadMesh" id="QuadMesh_gqdld"]
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ddjlp"]
+render_priority = 0
+shader = ExtResource("16_gqdld")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cl7ii"]
+render_priority = 0
+shader = ExtResource("16_gqdld")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gqdld"]
+render_priority = 0
+shader = ExtResource("16_gqdld")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_17fj0"]
+render_priority = 0
+shader = ExtResource("16_gqdld")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0rpld"]
+render_priority = 0
+shader = ExtResource("16_gqdld")
+
+[node name="BaseScene" type="Node3D"]
+script = ExtResource("1_qcxwf")
+
+[node name="Processor" type="Node" parent="." node_paths=PackedStringArray("light_array", "flame_particles")]
+script = ExtResource("2_2puwf")
+light_array = [NodePath("../Environment/MedievalStyleTableCandle01/GPUParticles3D/OmniLight3D"), NodePath("../Environment/MedievalStyleTableCandle02/GPUParticles3D2/OmniLight3D"), NodePath("../Environment/VoodooCandle02GoldFlame/GPUParticles3D3/OmniLight3D"), NodePath("../Environment/VoodooCandle02RedWithFlame/GPUParticles3D3/OmniLight3D"), NodePath("../Environment/VoodooCandle02V1WhiteLitMaxVrayNc/GPUParticles3D3/OmniLight3D"), NodePath("../Environment/TableCandleInHolder01VRay/GPUParticles3D3/OmniLight3D")]
+flame_particles = [NodePath("../Environment/MedievalStyleTableCandle01/GPUParticles3D"), NodePath("../Environment/MedievalStyleTableCandle02/GPUParticles3D2"), NodePath("../Environment/VoodooCandle02GoldFlame/GPUParticles3D3"), NodePath("../Environment/VoodooCandle02RedWithFlame/GPUParticles3D3"), NodePath("../Environment/VoodooCandle02V1WhiteLitMaxVrayNc/GPUParticles3D3"), NodePath("../Environment/TableCandleInHolder01VRay/GPUParticles3D3")]
+normal_light_color = Color(1, 0.68235296, 0, 1)
+angry_light_color = Color(1, 0.050980393, 0, 1)
+calm_light_color = Color(0, 0.54509807, 1, 1)
+
+[node name="Decider" type="Node" parent="."]
+script = ExtResource("1_57xsf")
+
+[node name="OuijaBoard" parent="." node_paths=PackedStringArray("location_dict") instance=ExtResource("4_vjcsa")]
+location_dict = {
+"0": NodePath("BoardParent/Positions/0"),
+"1": NodePath("BoardParent/Positions/1"),
+"2": NodePath("BoardParent/Positions/2"),
+"3": NodePath("BoardParent/Positions/3"),
+"4": NodePath("BoardParent/Positions/4"),
+"5": NodePath("BoardParent/Positions/5"),
+"6": NodePath("BoardParent/Positions/6"),
+"7": NodePath("BoardParent/Positions/7"),
+"8": NodePath("BoardParent/Positions/8"),
+"9": NodePath("BoardParent/Positions/9"),
+"A": NodePath("BoardParent/Positions/A"),
+"B": NodePath("BoardParent/Positions/B"),
+"C": NodePath("BoardParent/Positions/C"),
+"D": NodePath("BoardParent/Positions/D"),
+"E": NodePath("BoardParent/Positions/E"),
+"F": NodePath("BoardParent/Positions/F"),
+"G": NodePath("BoardParent/Positions/G"),
+"GOODBYE": NodePath("BoardParent/Positions/GOODBYE"),
+"H": NodePath("BoardParent/Positions/H"),
+"I": NodePath("BoardParent/Positions/I"),
+"J": NodePath("BoardParent/Positions/J"),
+"K": NodePath("BoardParent/Positions/K"),
+"L": NodePath("BoardParent/Positions/L"),
+"M": NodePath("BoardParent/Positions/M"),
+"N": NodePath("BoardParent/Positions/N"),
+"NO": NodePath("BoardParent/Positions/NO"),
+"O": NodePath("BoardParent/Positions/O"),
+"P": NodePath("BoardParent/Positions/P"),
+"Q": NodePath("BoardParent/Positions/Q"),
+"R": NodePath("BoardParent/Positions/R"),
+"S": NodePath("BoardParent/Positions/S"),
+"T": NodePath("BoardParent/Positions/T"),
+"U": NodePath("BoardParent/Positions/U"),
+"V": NodePath("BoardParent/Positions/V"),
+"W": NodePath("BoardParent/Positions/W"),
+"X": NodePath("BoardParent/Positions/X"),
+"Y": NodePath("BoardParent/Positions/Y"),
+"YES": NodePath("BoardParent/Positions/YES"),
+"Z": NodePath("BoardParent/Positions/Z")
+}
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.20678484, 0.97838646, 0, -0.97838646, 0.20678484, 0, 32.824387, 8.920535)
+script = ExtResource("5_21qnn")
+shake_noise = SubResource("FastNoiseLite_vxc0a")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 30.7776, 0)
+light_color = Color(1, 0.93, 0.7, 1)
+light_energy = 13.0
+light_volumetric_fog_energy = 1.115
+shadow_enabled = true
+spot_range = 51.06777
+spot_attenuation = 0.6
+spot_angle = 46.08938
+
+[node name="Overlay" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="Overlay" node_paths=PackedStringArray("text_input", "response_container", "letters_node", "communication_text")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("5_oqo0w")
+text_input = NodePath("TextInput")
+response_container = NodePath("ResponseContainer")
+letters_node = NodePath("Letters")
+letter_scene = ExtResource("7_vxc0a")
+communication_text = NodePath("Communications")
+
+[node name="TextInput" type="LineEdit" parent="Overlay/UI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1460.0
+offset_top = -130.0
+offset_right = -1460.0
+offset_bottom = -63.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("8_3ikmy")
+theme_override_font_sizes/font_size = 48
+placeholder_text = "please be nice"
+alignment = 1
+expand_to_text_length = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+
+[node name="Communications" type="RichTextLabel" parent="Overlay/UI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 91.0
+offset_top = -236.0
+offset_right = -91.0
+offset_bottom = -139.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("7_anra8")
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[wave]Ask a Question...[/wave]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResponseContainer" type="HBoxContainer" parent="Overlay/UI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 21.0
+offset_bottom = 285.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Overlay/UI/ResponseContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_anra8")
+theme_override_font_sizes/font_size = 100
+text = "T"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Overlay/UI/ResponseContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_anra8")
+theme_override_font_sizes/font_size = 100
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Overlay/UI/ResponseContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_anra8")
+theme_override_font_sizes/font_size = 100
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="Overlay/UI/ResponseContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_anra8")
+theme_override_font_sizes/font_size = 100
+text = "T"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Letters" type="Control" parent="Overlay/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_vxc0a")
+camera_attributes = SubResource("CameraAttributesPractical_3ikmy")
+
+[node name="FogVolume" type="FogVolume" parent="Environment"]
+size = Vector3(101, 75, 82)
+material = SubResource("FogMaterial_vxc0a")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-0.04452236, -0.96719915, -0.25008523, 0.76624197, -0.19368656, 0.6126654, -0.64100826, -0.16434821, 0.7497326, -38.58874, 23.74787, 0)
+light_energy = 0.07
+shadow_enabled = true
+sky_mode = 1
+
+[node name="FogVolume2" type="FogVolume" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7931442, 17.566347, 5.1324883)
+size = Vector3(98.9303, 43.857304, 93.66243)
+material = SubResource("ShaderMaterial_ay483")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 4.2540436, 0)
+light_volumetric_fog_energy = 0.0
+omni_range = 17.206469
+
+[node name="MedievalStyleTableCandle01" parent="Environment" instance=ExtResource("11_ni26a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.05249, 0, -23.112)
+skeleton = NodePath("../..")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Environment/MedievalStyleTableCandle01"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21715546, 3.740749, 0.24351883)
+material_override = SubResource("ShaderMaterial_h480d")
+amount = 30
+speed_scale = 0.7
+randomness = 0.74
+process_material = SubResource("ParticleProcessMaterial_0rpld")
+draw_pass_1 = SubResource("QuadMesh_gqdld")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Environment/MedievalStyleTableCandle01/GPUParticles3D"]
+light_color = Color(1, 0.68333334, 0, 1)
+shadow_enabled = true
+omni_range = 38.29038
+
+[node name="MedievalStyleTableCandle02" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.360355, 0, -18.14709)
+mesh = ExtResource("11_2mb0d")
+skeleton = NodePath("../..")
+surface_material_override/2 = SubResource("ShaderMaterial_ddjlp")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="Environment/MedievalStyleTableCandle02"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12298584, 6.480108, -0.4225006)
+material_override = SubResource("ShaderMaterial_h480d")
+amount = 30
+speed_scale = 0.7
+randomness = 0.74
+process_material = SubResource("ParticleProcessMaterial_0rpld")
+draw_pass_1 = SubResource("QuadMesh_gqdld")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Environment/MedievalStyleTableCandle02/GPUParticles3D2"]
+light_color = Color(1, 0.68333334, 0, 1)
+shadow_enabled = true
+omni_range = 38.29038
+
+[node name="PatioDiningTableRound6Seats01" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(0.99745446, 0, -0.071305946, 0, 1, 0, 0.071305946, 0, 0.99745446, 0, -76.598, 0)
+mesh = ExtResource("12_blj2i")
+skeleton = NodePath("../..")
+
+[node name="VoodooCandle02GoldFlame" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(0.41, 0, 0, 0, 0.41, 0, 0, 0, 0.41, 32.287716, 0, -9.132999)
+mesh = ExtResource("14_01iy8")
+skeleton = NodePath("../..")
+surface_material_override/3 = SubResource("ShaderMaterial_cl7ii")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="Environment/VoodooCandle02GoldFlame"]
+transform = Transform3D(0.6206415, 0, 0.78409433, 0, 1, 0, -0.78409433, 0, 0.6206415, -0.02217865, 26.34265, 0.12960434)
+material_override = SubResource("ShaderMaterial_h480d")
+amount = 30
+speed_scale = 0.7
+randomness = 0.74
+process_material = SubResource("ParticleProcessMaterial_0rpld")
+draw_pass_1 = SubResource("QuadMesh_gqdld")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Environment/VoodooCandle02GoldFlame/GPUParticles3D3"]
+light_color = Color(1, 0.68333334, 0, 1)
+shadow_enabled = true
+omni_range = 38.29038
+
+[node name="VoodooCandle02RedWithFlame" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(0.525, 0, 0, 0, 0.525, 0, 0, 0, 0.525, 27.924255, 0, -22.80148)
+mesh = ExtResource("15_jjdbg")
+skeleton = NodePath("../..")
+surface_material_override/3 = SubResource("ShaderMaterial_gqdld")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="Environment/VoodooCandle02RedWithFlame"]
+transform = Transform3D(0.6206414, 0, 0.7840942, 0, 0.9999998, 0, -0.7840942, 0, 0.6206414, -0.02217865, 27.101954, 0.12960434)
+material_override = SubResource("ShaderMaterial_h480d")
+amount = 30
+speed_scale = 0.7
+randomness = 0.74
+process_material = SubResource("ParticleProcessMaterial_0rpld")
+draw_pass_1 = SubResource("QuadMesh_gqdld")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Environment/VoodooCandle02RedWithFlame/GPUParticles3D3"]
+light_color = Color(1, 0.68333334, 0, 1)
+shadow_enabled = true
+omni_range = 38.29038
+
+[node name="VoodooCandle02V1WhiteLitMaxVrayNc" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(0.565, 0, 0, 0, 0.565, 0, 0, 0, 0.565, 35.686615, 0, -16.822319)
+mesh = ExtResource("16_jjdbg")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_17fj0")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="Environment/VoodooCandle02V1WhiteLitMaxVrayNc"]
+transform = Transform3D(0.62064147, 0, 0.7840942, 0, 0.9999998, 0, -0.7840942, 0, 0.62064147, -0.02217865, 26.255493, 0.12960434)
+material_override = SubResource("ShaderMaterial_h480d")
+amount = 30
+speed_scale = 0.7
+randomness = 0.74
+process_material = SubResource("ParticleProcessMaterial_0rpld")
+draw_pass_1 = SubResource("QuadMesh_gqdld")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Environment/VoodooCandle02V1WhiteLitMaxVrayNc/GPUParticles3D3"]
+light_color = Color(1, 0.68333334, 0, 1)
+shadow_enabled = true
+omni_range = 38.29038
+
+[node name="TableCandleInHolder01VRay" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(-0.19293691, 0, -0.4612758, 0, 0.5, 0, 0.4612758, 0, -0.19293691, -34.93923, 0, 0)
+mesh = ExtResource("22_h480d")
+skeleton = NodePath("../..")
+surface_material_override/3 = SubResource("ShaderMaterial_0rpld")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="Environment/TableCandleInHolder01VRay"]
+transform = Transform3D(0.6206416, 0, 0.7840942, 0, 0.9999998, 0, -0.7840942, 0, 0.6206416, -2.4321938, 34.36356, -0.9442673)
+material_override = SubResource("ShaderMaterial_h480d")
+amount = 30
+speed_scale = 0.7
+randomness = 0.74
+process_material = SubResource("ParticleProcessMaterial_0rpld")
+draw_pass_1 = SubResource("QuadMesh_gqdld")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Environment/TableCandleInHolder01VRay/GPUParticles3D3"]
+light_color = Color(1, 0.68333334, 0, 1)
+shadow_enabled = true
+omni_range = 38.29038
+
+[node name="Pause" type="CanvasLayer" parent="."]
+script = ExtResource("23_ddjlp")
+
+[node name="PauseControl" type="Control" parent="Pause"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Pause/PauseControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.42352942)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause/PauseControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -536.0
+offset_top = -698.0
+offset_right = 536.0
+offset_bottom = 698.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="FullScreenButton" type="Button" parent="Pause/PauseControl/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15247625, 0.15247661, 0.15247631, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("7_anra8")
+theme_override_font_sizes/font_size = 100
+text = "Toggle Full Screen"
+
+[node name="ReturnButton" type="Button" parent="Pause/PauseControl/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15247625, 0.15247661, 0.15247631, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("7_anra8")
+theme_override_font_sizes/font_size = 100
+text = "Return to Board"
+
+[node name="ExitButton" type="Button" parent="Pause/PauseControl/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15247625, 0.15247661, 0.15247631, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("7_anra8")
+theme_override_font_sizes/font_size = 100
+text = "Exit Ouija"
+
+[connection signal="decided" from="Decider" to="Processor" method="_on_decider_decided"]
+[connection signal="decided" from="Decider" to="OuijaBoard" method="_on_answer_decided"]
+[connection signal="answer_complete" from="OuijaBoard" to="Processor" method="_on_ouija_board_answer_complete"]
+[connection signal="answer_complete" from="OuijaBoard" to="Overlay/UI" method="_on_ouija_board_answer_complete"]
+[connection signal="moved" from="OuijaBoard" to="Overlay/UI" method="_on_ouija_board_moved"]
+[connection signal="shake_alert" from="OuijaBoard" to="Camera" method="_on_ouija_board_shake_alert"]
+[connection signal="submitted" from="Overlay/UI" to="Decider" method="_on_ui_submitted"]
+[connection signal="text_submitted" from="Overlay/UI/TextInput" to="Overlay/UI" method="_on_text_input_text_submitted"]
+[connection signal="menu_closed" from="Pause" to="Overlay/UI" method="_on_pause_menu_closed"]
+[connection signal="pressed" from="Pause/PauseControl/VBoxContainer/FullScreenButton" to="Pause" method="_on_full_screen_button_pressed"]
+[connection signal="pressed" from="Pause/PauseControl/VBoxContainer/ReturnButton" to="Pause" method="_on_return_button_pressed"]
+[connection signal="pressed" from="Pause/PauseControl/VBoxContainer/ExitButton" to="Pause" method="_on_exit_button_pressed"]

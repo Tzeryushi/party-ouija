@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkca6jsl3oyyr"]
+
+[ext_resource type="FontFile" uid="uid://cv8j2u20ecvvv" path="res://Fonts/Le Mano-Bold.ttf" id="1_r6swm"]
+[ext_resource type="Script" uid="uid://dpdqc5nutd1o6" path="res://letter.gd" id="2_5gbsb"]
+
+[node name="Letter" type="Label"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.9999998, 0.92084044, 0.73695695, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.24313726)
+theme_override_colors/font_outline_color = Color(0.108799405, 0.038175084, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 20
+theme_override_constants/shadow_outline_size = 20
+theme_override_fonts/font = ExtResource("1_r6swm")
+theme_override_font_sizes/font_size = 110
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_5gbsb")

@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://xqhbknw4n26e"]
+
+[ext_resource type="Shader" uid="uid://capckdjdrqccn" path="res://Shaders/transparent.gdshader" id="1_85jee"]
+[ext_resource type="ArrayMesh" uid="uid://ceplgkwhi8bj8" path="res://Assets/Models/[OBJ] Medieval_Style_Table_Candle_01/Medieval_Style_Table_Candle_01.obj" id="1_ykkg6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_85jee"]
+render_priority = 0
+shader = ExtResource("1_85jee")
+
+[node name="MedievalStyleTableCandle01" type="MeshInstance3D"]
+mesh = ExtResource("1_ykkg6")
+surface_material_override/1 = SubResource("ShaderMaterial_85jee")
